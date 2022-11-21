@@ -6,7 +6,7 @@ import com.example.demo.entity.PageResult;
 import com.example.demo.entity.QueryPageBean;
 import com.example.demo.entity.Result;
 import com.example.demo.service.StudentService;
-import jdk.nashorn.internal.ir.annotations.Reference;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

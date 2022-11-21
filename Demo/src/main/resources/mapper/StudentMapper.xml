@@ -38,7 +38,7 @@
                 s_class = #{s_class},
             </if>
             <if test="s_college != null">
-                attention = #{attention},
+                s_college = #{s_college},
             </if>
             <if test="s_score != null">
                 s_score = #{s_score},
