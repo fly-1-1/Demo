@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StudentMapper">
+    <insert id="add" parameterType="com.example.demo.domain.Student">
+
+        insert into s_student(s_id,s_name,s_sex,s_college,s_class,s_score,s_number,s_password,s_age)
+        values
+            (#{s_id},#{s_name},#{s_sex},#{s_college},#{s_class},#{s_score},#{s_number},#{s_password},#{s_age})
+    </insert>
+
+    <select id="findAll" resultType="com.example.demo.domain.Student">
+        select * from s_student
+    </select>
+
+    <delete id="deleteById" parameterType="String">
+        delete from s_student where s_id = #{s_id}
+    </delete>
+
+    <update id="edit" parameterType="com.example.demo.domain.Student">
+        update s_student
+        <set>
+            <if test="s_name != null">
+                s_name = #{s_name},
+            </if>
+            <if test="s_sex != null">
+                s_sex = #{s_sex},
+            </if>
+            <if test="s_password != null">
+                s_password = #{s_password},
+            </if>
+            <if test="s_age != null">
+                s_age = #{s_age},
+            </if>
+            <if test="s_number != null">
+                s_number = #{s_number},
+            </if>
+            <if test="s_class != null">
+                s_class = #{s_class},
+            </if>
+            <if test="s_college != null">
+                attention = #{attention},
+            </if>
+            <if test="s_score != null">
+                s_score = #{s_score},
+            </if>
+        </set>
+        where s_id = #{s_id}
+    </update>
+
+    <select id="selectByCondition" parameterType="String" resultType="com.example.demo.domain.Student">
+        select * from s_student
+        <if test="value != null and value.length > 0">
+            where s_name = #{value} or s_id = #{value}
+        </if>
+    </select>
+
+    <select id="findById" parameterType="String" resultType="com.example.demo.domain.Student">
+        select * from s_student where s_id = #{s_id}
+    </select>
+
+</mapper>

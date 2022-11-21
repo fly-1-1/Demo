@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TeacherMapper">
+    <insert id="add" parameterType="com.example.demo.domain.Teacher">
+
+        insert into t_teacher(t_id,t_name,t_sex,t_college,t_address,t_number,t_password,t_age)
+        values
+            (#{t_id},#{t_name},#{t_sex},#{t_college},#{t_address},#{t_number},#{t_password},#{t_age})
+    </insert>
+
+    <select id="findAll" resultType="com.example.demo.domain.Teacher">
+        select * from t_teacher
+    </select>
+
+    <delete id="deleteById" parameterType="String">
+        delete from t_teacher where t_id = #{t_id}
+    </delete>
+
+    <update id="edit" parameterType="com.example.demo.domain.Teacher">
+        update t_teacher
+        <set>
+            <if test="t_name != null">
+                t_name = #{t_name},
+            </if>
+            <if test="t_sex != null">
+                t_sex = #{t_sex},
+            </if>
+            <if test="t_password != null">
+                t_password = #{t_password},
+            </if>
+            <if test="t_age != null">
+                t_age = #{t_age},
+            </if>
+            <if test="t_number != null">
+                t_number = #{t_number},
+            </if>
+            <if test="t_address != null">
+                t_address = #{t_address},
+            </if>
+            <if test="t_college != null">
+                t_college = #{t_college},
+            </if>
+        </set>
+        where t_id = #{t_id}
+    </update>
+
+    <select id="findById" parameterType="String" resultType="com.example.demo.domain.Teacher">
+        select * from t_teacher where t_id = #{t_id}
+    </select>
+
+    <select id="selectByCondition" parameterType="String" resultType="com.example.demo.domain.Teacher">
+        select * from t_teacher
+        <if test="value != null and value.length > 0">
+            where t_id = #{value} or t_name = #{value}
+        </if>
+    </select>
+
+</mapper>
